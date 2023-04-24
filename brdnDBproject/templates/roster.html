@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>Guild Roster</title> 
+</head> 
+<body> 
+  <h1>Add Player</h1> 
+  <form method = "POST" action = '/addRoster'>
+    <label>player name
+      <input type = "text" value = "" name = "name">
+    </label>
+    <label>player class
+      <input type = "text" value = "" name = "class">
+    </label>
+    <input type = "hidden" value = "guild_id" name = "guildID">
+    <input type = "submit" name = "Add">
+  </form>
+  <script>
+    console.log('hello');
+    const URL = window.location.href;
+    var parName = URL.split("guildID=")[1];
+    console.log(parName);
+    document.querySelector('[value= "guild_id"]').value = parName;
+  </script>
+  <h1>Players</h1> 
+  <ol> 
+  {% for player in players %} 
+    <p>{{player.character_name, player.player_class}}
+      <form method="POST" action = "./updateRoster" style = display:inline"> 
+        <input type = "hidden" value = "{{player.id}}" name = "id">
+        <input type = "text" value = "" name = "newname">
+        <input type = "submit" value = "Update"> 
+      </form>
+      <form method="POST" action = "./deleteRoster" style = display:inline"> 
+        <input type = "hidden" value = "{{player.id}}" name = "id">
+        <input type = "submit" value = "Delete"> 
+      </form>
+      <form action = '/' method = "POST" style = display:inline">
+      <a href = '/player?class={{player.player_class}}'>{{player.player_class}}</a> 
+      </form>
+      <form action = '/items' method = "POST" style = display:inline">
+      <a href = '/items?id={{player.id}}'>view items</a> 
+      </form>
+    </p>
+    {% endfor %} 
+  </ol> 
+</body> 
+</html>
+
+
+
+
+
+
+
+
+
+
+
