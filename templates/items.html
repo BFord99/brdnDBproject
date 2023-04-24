@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>Items</title> 
+</head> 
+<body> 
+  <ol> 
+  {% for player in players %}
+    <p>{{player.helmet_name}}{{ ", " if player.helmet_name and player.num else ""}}{{ player.num if player.num is defined else "" }}</p> 
+  {% endfor %}
+  <ol>
+</body> 
+</html>
+
+
+
+
